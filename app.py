@@ -16,7 +16,7 @@ import re as regex
 # ------------------ CONFIGURATION ------------------
 SENDER_EMAIL = "reddydani09@gmail.com"      # your Gmail
 APP_PASSWORD = "lseo sgxd plwa vktw"                  # Gmail App Password
-# ---------------------------------------------------
+# -------------------------------------------------
 
 # Logging
 logging.basicConfig(
@@ -30,7 +30,7 @@ logging.basicConfig(
 client = Client(host="http://localhost:11434")
 model = "llama3.2"
 
-# ------------------ HELPERS ------------------
+# ---------------- HELPERS ------------------
 
 def is_valid_email(email):
     pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
@@ -80,7 +80,7 @@ def check_body(body):
         return ""
     return body.strip()
 
-# ------------------ OLLAMA EMAIL GENERATION ------------------
+# ---------------- OLLAMA EMAIL GENERATION ------------------
 
 def generate_email(system_prompt, question):
     try:
@@ -94,7 +94,7 @@ def generate_email(system_prompt, question):
 
         content = response["message"]["content"]
 
-        # 🔐 SAFE JSON EXTRACTION
+        # SAFE JSON EXTRACTION
         match = regex.search(r"\{[\s\S]*\}", content)
         if not match:
             raise ValueError("No JSON found in response")
@@ -179,7 +179,7 @@ def main():
             else:
                 st.error("Failed to send email")
 
-# ------------------ RUN ------------------
+# ------------------ RUN ----------------
 
 if __name__ == "__main__":
     main()
